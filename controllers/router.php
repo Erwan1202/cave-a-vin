@@ -38,3 +38,42 @@ switch ($action) {
         break;
     case 'deleteCave':
         $controller = new CaveController();
+
+        $controller->delete($id);
+        break;
+    case 'createVin':
+        $controller = new VinController();
+        $controller->create($_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_POST['utilisateur_id'], $_POST['cave_id']);
+        break;
+    case 'readVin':
+        $controller = new VinController();
+        $data = $controller->read($id);
+        break;
+    case 'updateVin':
+        $controller = new VinController();
+        $controller->update($id, $_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_POST['utilisateur_id'], $_POST['cave_id']);
+        break;
+    case 'deleteVin':
+        $controller = new VinController();
+        $controller->delete($id);
+        break;
+    case 'createCommentaire':
+        $controller = new CommentaireController();
+        $controller->create($_POST['texte'], $_POST['vin_id'], $_POST['utilisateur_id']);
+        break;
+    case 'readCommentaire':
+        $controller = new CommentaireController();
+        $data = $controller->read($id);
+        break;
+    case 'updateCommentaire':
+        $controller = new CommentaireController();
+        $controller->update($id, $_POST['texte'], $_POST['vin_id'], $_POST['utilisateur_id']);
+        break;
+    case 'deleteCommentaire':
+        $controller = new CommentaireController();
+        $controller->delete($id);
+        break;
+    default:
+        echo 'Action inconnue';
+        break;
+}
