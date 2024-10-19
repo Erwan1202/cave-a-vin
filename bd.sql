@@ -22,6 +22,7 @@ create table vin(
     annee int not null,
     couleur VARCHAR(50) not null,
     region VARCHAR(50) not null,
+    type_bouteille VARCHAR(50) not null;
     utilisateur_id int not null,
     cave_id int not null,
     foreign key (utilisateur_id) references utilisateur(id),
@@ -37,4 +38,3 @@ create table commentaire(
     foreign key (vin_id) references vin(id)
 )
 
-select NOW();
