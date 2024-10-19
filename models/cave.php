@@ -1,30 +1,32 @@
-<?php
-include_once('bdd.php');
-class cave{
-    public static function getVins(){
-        global $bdd;
-        $req = $bdd->query('SELECT * FROM vins');
-        return $req;
+class Cave {
+    private $id;
+    private $nom;
+    private $utilisateur_id;
+
+    public function __construct($id, $nom, $utilisateur_id) {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->utilisateur_id = $utilisateur_id;
     }
-    public static function getVin($id){
-        global $bdd;
-        $req = $bdd->prepare('SELECT * FROM vins WHERE id = ?');
-        $req->execute(array($id));
-        return $req;
+
+    // Getters and setters
+    public function getId() {
+        return $this->id;
     }
-    public static function addVin($nom, $annee, $cepage, $region, $description){
-        global $bdd;
-        $req = $bdd->prepare('INSERT INTO vins(nom, annee, cepage, region, description) VALUES(?, ?, ?, ?, ?)');
-        $req->execute(array($nom, $annee, $cepage, $region, $description));
+
+    public function getNom() {
+        return $this->nom;
     }
-    public static function updateVin($id, $nom, $annee, $cepage, $region, $description){
-        global $bdd;
-        $req = $bdd->prepare('UPDATE vins SET nom = ?, annee = ?, cepage = ?, region = ?, description = ? WHERE id = ?');
-        $req->execute(array($nom, $annee, $cepage, $region, $description, $id));
+
+    public function getUtilisateurId() {
+        return $this->utilisateur_id;
     }
-    public static function deleteVin($id){
-        global $bdd;
-        $req = $bdd->prepare('DELETE FROM vins WHERE id = ?');
-        $req->execute(array($id));
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setUtilisateurId($utilisateur_id) {
+        $this->utilisateur_id = $utilisateur_id;
     }
 }
