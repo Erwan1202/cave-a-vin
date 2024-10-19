@@ -58,19 +58,19 @@ switch ($action) {
         $controller->delete($id);
         break;
     case 'createCommentaire':
-        $controller = new CommentaireController();
+        $controller = new CommentairesController();
         $controller->create($_POST['texte'], $_POST['vin_id'], $_POST['utilisateur_id']);
         break;
     case 'readCommentaire':
-        $controller = new CommentaireController();
+        $controller = new CommentairesController();
         $data = $controller->read($id);
         break;
     case 'updateCommentaire':
-        $controller = new CommentaireController();
+        $controller = new CommentairesController();
         $controller->update($id, $_POST['texte'], $_POST['vin_id'], $_POST['utilisateur_id']);
         break;
     case 'deleteCommentaire':
-        $controller = new CommentaireController();
+        $controller = new CommentairesController();
         $controller->delete($id);
         break;
     default:
