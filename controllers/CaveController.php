@@ -1,5 +1,5 @@
 <?php
-require_once 'models/cave.php';
+require_once 'models/Cave.php';
 require_once 'bdd.php';
 
 class CaveController {
@@ -33,6 +33,14 @@ class CaveController {
         $stmt = $bdd->prepare("DELETE FROM cave WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
+    }
+
+    public function getVinsByUtilisateur($utilisateur_id) {
+        $bdd = Bdd::connexion();
+        $stmt = $bdd->prepare("SELECT vin.* FROM vin JOIN cave ON vin.cave_id = cave.id WHERE cave.utilisateur_id = :utilisateur_id");
+        $stmt->bindParam(':utilisateur_id', $utilisateur_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>
