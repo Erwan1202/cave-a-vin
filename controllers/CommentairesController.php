@@ -1,5 +1,5 @@
 <?php
-require_once 'models/commentaire.php';
+require_once 'models/Commentaire.php';
 require_once 'bdd.php';
 
 class CommentaireController {
@@ -18,6 +18,22 @@ class CommentaireController {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function readByVin($vin_id) {
+        $bdd = Bdd::connexion();
+        $stmt = $bdd->prepare("SELECT * FROM commentaire WHERE vin_id = :vin_id");
+        $stmt->bindParam(':vin_id', $vin_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCommentairesByUtilisateur($utilisateur_id) {
+        $bdd = Bdd::connexion();
+        $stmt = $bdd->prepare("SELECT * FROM commentaire WHERE utilisateur_id = :utilisateur_id");
+        $stmt->bindParam(':utilisateur_id', $utilisateur_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update($id, $texte, $utilisateur_id, $vin_id) {
