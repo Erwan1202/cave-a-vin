@@ -1,27 +1,40 @@
 <?php
+require_once 'controllers/UtilisateurController.php';
+require_once 'controllers/CaveController.php';
+require_once 'controllers/VinController.php';
+require_once 'controllers/CommentaireController.php';
 
-$page = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
+$action = $_GET['action'] ?? null;
+$id = $_GET['id'] ?? null;
 
-switch ($page) {
-    case 'inscription':
-        include 'controllers/inscription.php';
+switch ($action) {
+    case 'createUtilisateur':
+        $controller = new UtilisateurController();
+        $controller->create($_POST['nom'], $_POST['mdp']);
         break;
-    
-    case 'connexion':
-        include 'controllers/connexion.php';
+    case 'readUtilisateur':
+        $controller = new UtilisateurController();
+        $data = $controller->read($id);
         break;
-    
-    case 'home':
-        include 'controllers/home.php';
+    case 'updateUtilisateur':
+        $controller = new UtilisateurController();
+        $controller->update($id, $_POST['nom'], $_POST['mdp']);
         break;
-    
-    case 'logout':
-        include 'controllers/logout.php';
+    case 'deleteUtilisateur':
+        $controller = new UtilisateurController();
+        $controller->delete($id);
         break;
-    
-    default:
-        include 'controllers/home.php';
+    case 'createCave':
+        $controller = new CaveController();
+        $controller->create($_POST['nom'], $_POST['utilisateur_id']);
         break;
-    
-
-}
+    case 'readCave':
+        $controller = new CaveController();
+        $data = $controller->read($id);
+        break;
+    case 'updateCave':
+        $controller = new CaveController();
+        $controller->update($id, $_POST['nom'], $_POST['utilisateur_id']);
+        break;
+    case 'deleteCave':
+        $controller = new CaveController();
