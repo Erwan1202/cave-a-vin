@@ -110,7 +110,6 @@ switch ($action) {
         $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
             
         // Debug: Afficher le contenu des vins
-        var_dump($vins); // Ajoutez ceci pour voir ce qui est retourné
         include 'views/gestionCave.php';
         break;
 
