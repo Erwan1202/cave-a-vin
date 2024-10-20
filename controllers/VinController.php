@@ -11,6 +11,10 @@ class VinController {
 
     // Créer un vin
     public function create($nom, $annee, $couleur, $region, $type_bouteille, $utilisateur_id, $cave_id) {
+        if (empty($nom) || empty($annee) || empty($couleur) || empty($region) || empty($type_bouteille) || empty($utilisateur_id) || empty($cave_id)) {
+            throw new InvalidArgumentException("Tous les champs doivent être remplis.");
+        }
+
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("
@@ -32,6 +36,10 @@ class VinController {
 
     // Lire un vin
     public function read($id) {
+        if (empty($id)) {
+            throw new InvalidArgumentException("L'identifiant du vin ne peut pas être vide.");
+        }
+
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("SELECT * FROM vin WHERE id = :id");
@@ -45,6 +53,10 @@ class VinController {
 
     // Mettre à jour un vin
     public function update($id, $nom, $annee, $couleur, $region, $type_bouteille, $utilisateur_id, $cave_id) {
+        if (empty($id) || empty($nom) || empty($annee) || empty($couleur) || empty($region) || empty($type_bouteille) || empty($utilisateur_id) || empty($cave_id)) {
+            throw new InvalidArgumentException("Tous les champs doivent être remplis.");
+        }
+
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("
@@ -69,6 +81,10 @@ class VinController {
 
     // Supprimer un vin
     public function delete($id) {
+        if (empty($id)) {
+            throw new InvalidArgumentException("L'identifiant du vin ne peut pas être vide.");
+        }
+
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("DELETE FROM vin WHERE id = :id");

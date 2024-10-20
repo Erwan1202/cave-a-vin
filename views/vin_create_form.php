@@ -52,6 +52,10 @@
                 </select>
             </div>
 
+            <!-- Champs cachés pour utilisateur_id et cave_id -->
+            <input type="hidden" name="utilisateur_id" value="<?php echo $_SESSION['utilisateur_id']; ?>">
+            <input type="hidden" name="cave_id" value="<?php echo $cave_id; ?>"> <!-- Assurez-vous que $cave_id est défini -->
+
             <!-- Bouton de soumission -->
             <div class="flex justify-between items-center">
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Ajouter</button>
