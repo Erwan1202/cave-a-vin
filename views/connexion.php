@@ -23,6 +23,10 @@
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Se connecter</button>
             </div>
         </form>
+        <!-- Bouton d'inscription ajouté ici -->
+        <div class="text-center mt-4">
+            <a href="inscription.php" class="text-blue-500 hover:underline">Créer un compte</a>
+        </div>
     </div>
 </body>
 </html>
