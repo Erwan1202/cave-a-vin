@@ -11,7 +11,7 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl"
          x-data="{
              filter: '',
-             vins: <?php echo json_encode($vins, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
+             vins: <?php echo json_encode($vins ?? [], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
          }">
         <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
         
@@ -34,14 +34,12 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Afficher un message si aucun vin n'est trouvé -->
                 <template x-if="vins.length === 0">
                     <tr>
                         <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
                     </tr>
                 </template>
 
-                <!-- Boucle à travers les vins avec filtrage -->
                 <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
                     <tr>
                         <td class="border px-4 py-2" x-text="vin.nom"></td>
