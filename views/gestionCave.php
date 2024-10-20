@@ -10,6 +10,15 @@
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl" x-data="{ filter: '', vins: <?php echo json_encode($vins, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?> }">
         <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
+
+        <!-- Affichage de l'utilisateur connecté -->
+        <div class="mb-4 text-center">
+            <?php if (isset($_SESSION['utilisateur_nom'])): ?>
+                <p class="text-lg">Bienvenue, <strong><?php echo htmlspecialchars($_SESSION['utilisateur_nom']); ?></strong>!</p>
+            <?php else: ?>
+                <p class="text-lg">Vous n'êtes pas connecté.</p>
+            <?php endif; ?>
+        </div>
         
         <!-- Filtre de recherche et bouton d'ajout -->
         <div class="mb-4 flex justify-between items-center">
