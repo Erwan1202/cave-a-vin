@@ -24,8 +24,8 @@
             </div>
         </form>
         <!-- Bouton d'inscription ajouté ici -->
-        <div class="text-center mt-4">
-            <a action="index.php?action=inscription" class="text-blue-500 hover:underline">Créer un compte</a>
+        <div action="index.php?action=inscription" class="text-center mt-4">
+            <a class="text-blue-500 hover:underline">Créer un compte</a>
         </div>
     </div>
 </body>
