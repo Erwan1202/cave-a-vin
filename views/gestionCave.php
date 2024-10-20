@@ -11,7 +11,7 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl"
          x-data="{
              filter: '',
-             vin: <?php echo json_encode($vin ?? [], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
+             vins: <?php echo json_encode($vins ?? [], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
          }">
         <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
         
@@ -34,22 +34,22 @@
                 </tr>
             </thead>
             <tbody>
-                <template x-if="vin.length === 0">
+                <template x-if="vins.length === 0">
                     <tr>
                         <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
                     </tr>
                 </template>
 
-                <template x-for="vine in vin.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vine.id">
+                <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
                     <tr>
-                        <td class="border px-4 py-2" x-text="vine.nom"></td>
-                        <td class="border px-4 py-2" x-text="vine.annee"></td>
-                        <td class="border px-4 py-2" x-text="vine.couleur"></td>
-                        <td class="border px-4 py-2" x-text="vine.region"></td>
-                        <td class="border px-4 py-2" x-text="vine.type_bouteille"></td>
+                        <td class="border px-4 py-2" x-text="vin.nom"></td>
+                        <td class="border px-4 py-2" x-text="vin.annee"></td>
+                        <td class="border px-4 py-2" x-text="vin.couleur"></td>
+                        <td class="border px-4 py-2" x-text="vin.region"></td>
+                        <td class="border px-4 py-2" x-text="vin.type_bouteille"></td>
                         <td class="border px-4 py-2">
-                            <a :href="'index.php?action=updateVinForm&id=' + vine.id" class="text-blue-500 hover:underline">Modifier</a>
-                            <a :href="'index.php?action=deleteVin&id=' + vine.id" class="text-red-500 hover:underline ml-2">Supprimer</a>
+                            <a :href="'index.php?action=updateVinForm&id=' + vin.id" class="text-blue-500 hover:underline">Modifier</a>
+                            <a :href="'index.php?action=deleteVin&id=' + vin.id" class="text-red-500 hover:underline ml-2">Supprimer</a>
                         </td>
                     </tr>
                 </template>
