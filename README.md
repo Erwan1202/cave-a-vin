@@ -35,7 +35,3 @@ Ce projet est une application web pour gérer une cave à vin. Il permet aux uti
 
 ## Aide et contact
 Si vous avez besoin d'aide supplémentaire ou si vous souhaitez contribuer à ce projet, n'hésitez pas à me contacter.
-
----
-
-N'hésitez pas à modifier ou ajouter des informations spécifiques selon vos besoins !
