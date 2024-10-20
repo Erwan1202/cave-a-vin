@@ -42,5 +42,29 @@ class UtilisateurController {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function login($nom, $mdp) {
+        $bdd = Bdd::connexion();
+        $stmt = $bdd->prepare("SELECT * FROM utilisateur WHERE nom = :nom");
+        $stmt->bindParam(':nom', $nom);
+        $stmt->execute();
+        $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vérifiez si l'utilisateur existe et si le mot de passe correspond
+        if ($utilisateur && password_verify($mdp, $utilisateur['mdp'])) {
+            // Stockez les informations de l'utilisateur dans la session
+            session_start();
+            $_SESSION['utilisateur_id'] = $utilisateur['id'];
+            $_SESSION['utilisateur_nom'] = $utilisateur['nom'];
+
+            // Redirigez vers la page de votre cave
+            header('Location: index.php?action=maCave');
+            exit();
+        } else {
+            // Redirigez vers la page de connexion avec un message d'erreur
+            header('Location: index.php?action=connexion&error=1');
+            exit();
+        }
+    }
 }
 ?>
