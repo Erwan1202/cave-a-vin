@@ -27,7 +27,8 @@ switch ($action) {
 
     case 'createVin':
         $controller = new VinController();
-        $controller->create($_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_POST['utilisateur_id'], $_POST['cave_id']);
+        // Assurez-vous d'utiliser l'ID de l'utilisateur à partir de la session
+        $controller->create($_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_SESSION['utilisateur_id'], $_POST['cave_id']);
         header('Location: index.php?action=maCave');
         break;
 
@@ -39,7 +40,7 @@ switch ($action) {
 
     case 'updateVin':
         $controller = new VinController();
-        $controller->update($id, $_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_POST['utilisateur_id'], $_POST['cave_id']);
+        $controller->update($id, $_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_SESSION['utilisateur_id'], $_POST['cave_id']);
         header('Location: index.php?action=maCave');
         break;
 
@@ -88,11 +89,11 @@ switch ($action) {
             exit();
         }
         
-        $controller = new CaveController();
-        $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']); // Changez ici
+        $controller = new VinController(); // Modifiez pour utiliser VinController
+        // Récupérer les vins pour l'utilisateur connecté
+        $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
         include 'views/gestionCave.php';
         break;
-        
 
     case 'createCave':
         $controller = new CaveController();
