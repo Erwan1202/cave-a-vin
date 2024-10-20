@@ -4,7 +4,7 @@ session_start(); // Démarrer la session
 error_reporting(E_ALL); // Afficher toutes les erreurs
 ini_set('display_errors', 1); // Afficher les erreurs à l'écran
 
-require_once 'controllers/UtilisateurController.php';
+require_once 'controllers/UtilisateurContoller.php';
 require_once 'controllers/CaveController.php';
 require_once 'controllers/VinController.php';
 require_once 'controllers/CommentairesController.php';
