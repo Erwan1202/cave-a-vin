@@ -104,15 +104,13 @@ class VinController {
         }
     }
 
-        // Ajoutez cette méthode dans votre VinController.php
     public function getVinsByUtilisateur($utilisateurId) {
         $bdd = Bdd::connexion();
         $stmt = $bdd->prepare("SELECT * FROM vin WHERE utilisateur_id = :utilisateur_id");
         $stmt->bindParam(':utilisateur_id', $utilisateurId);
         $stmt->execute();
         $vins = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-        // Debug : Affiche les vins récupérés
+
         var_dump($vins);
             
         return $vins;
