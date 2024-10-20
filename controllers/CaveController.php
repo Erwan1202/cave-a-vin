@@ -39,13 +39,13 @@ class CaveController {
         $stmt->execute();
     }
 
-    // Récupère les vins par utilisateur
     public function getVinsByUtilisateur($utilisateur_id) {
-        $bdd = Bdd::connexion(); // Connexion à la base de données
+        $bdd = Bdd::connexion(); // Assurez-vous que la connexion à la base de données est bien établie
         $stmt = $bdd->prepare("SELECT * FROM vins WHERE utilisateur_id = :utilisateur_id");
-        $stmt->execute(['utilisateur_id' => $utilisateur_id]);
+        $stmt->bindParam(':utilisateur_id', $utilisateur_id);
+        $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
         if (!$results) {
             return []; // Retourne un tableau vide si aucun vin n'est trouvé
         }

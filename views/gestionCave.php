@@ -8,13 +8,27 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl"
-         x-data="{
-             filter: '',
-             vins: <?php echo json_encode($vins ?? [], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
-         }">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
         <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
-        
+
+        <!-- Affichage des vins -->
+        <?php if (!empty($vins)): ?>
+            <h2 class="text-xl font-semibold mb-4">Mes Vins</h2>
+            <ul class="list-disc pl-5 mb-4">
+                <?php foreach ($vins as $vin): ?>
+                    <li>
+                        Nom: <?= htmlspecialchars($vin['nom']) ?>,
+                        Année: <?= htmlspecialchars($vin['annee']) ?>,
+                        Couleur: <?= htmlspecialchars($vin['couleur']) ?>,
+                        Région: <?= htmlspecialchars($vin['region']) ?>,
+                        Type de bouteille: <?= htmlspecialchars($vin['type_bouteille']) ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>Aucun vin trouvé dans votre cave.</p>
+        <?php endif; ?>
+
         <!-- Filtre de recherche et bouton d'ajout -->
         <div class="mb-4 flex justify-between items-center">
             <input type="text" placeholder="Filtrer par nom..." x-model="filter" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
