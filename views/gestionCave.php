@@ -9,24 +9,24 @@
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
-        <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Ma Cave</h1>
 
         <!-- Affichage des vins -->
         <?php if (!empty($vins)): ?>
-            <h2 class="text-xl font-semibold mb-4">Mes Vins</h2>
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Mes Vins</h2>
             <ul class="list-disc pl-5 mb-4">
                 <?php foreach ($vins as $vin): ?>
-                    <li>
-                        Nom: <?= htmlspecialchars($vin['nom']) ?>,
-                        Année: <?= htmlspecialchars($vin['annee']) ?>,
-                        Couleur: <?= htmlspecialchars($vin['couleur']) ?>,
-                        Région: <?= htmlspecialchars($vin['region']) ?>,
-                        Type de bouteille: <?= htmlspecialchars($vin['type_bouteille']) ?>
+                    <li class="border-b py-2">
+                        <span class="font-semibold"><?= htmlspecialchars($vin['nom']) ?></span> - 
+                        Année: <span class="italic"><?= htmlspecialchars($vin['annee']) ?></span>, 
+                        Couleur: <span class="italic"><?= htmlspecialchars($vin['couleur']) ?></span>, 
+                        Région: <span class="italic"><?= htmlspecialchars($vin['region']) ?></span>, 
+                        Type de bouteille: <span class="italic"><?= htmlspecialchars($vin['type_bouteille']) ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p>Aucun vin trouvé dans votre cave.</p>
+            <p class="text-red-500">Aucun vin trouvé dans votre cave.</p>
         <?php endif; ?>
 
         <!-- Filtre de recherche et bouton d'ajout -->
@@ -36,9 +36,9 @@
         </div>
 
         <!-- Table des vins -->
-        <table class="w-full table-auto">
+        <table class="w-full table-auto mt-4 border border-gray-300 rounded-lg overflow-hidden">
             <thead>
-                <tr>
+                <tr class="bg-gray-200">
                     <th class="px-4 py-2">Nom</th>
                     <th class="px-4 py-2">Année</th>
                     <th class="px-4 py-2">Couleur</th>
@@ -55,7 +55,7 @@
                 </template>
 
                 <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
-                    <tr>
+                    <tr class="hover:bg-gray-100 transition duration-200">
                         <td class="border px-4 py-2" x-text="vin.nom"></td>
                         <td class="border px-4 py-2" x-text="vin.annee"></td>
                         <td class="border px-4 py-2" x-text="vin.couleur"></td>
