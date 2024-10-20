@@ -42,7 +42,7 @@ class UtilisateurController {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     public function login($nom, $mdp) {
         $bdd = Bdd::connexion();
         $stmt = $bdd->prepare("SELECT * FROM utilisateur WHERE nom = :nom");
