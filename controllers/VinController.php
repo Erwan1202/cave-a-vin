@@ -11,13 +11,18 @@ class VinController {
 
     public function create($nom, $annee, $couleur, $region, $type_bouteille, $utilisateur_id, $cave_id) {
         // Vérification que tous les champs nécessaires sont remplis
-        if (empty($nom) || empty($annee) || empty($couleur) || empty($region) || empty($type_bouteille) || empty($utilisateur_id)) {
+        if (empty($nom) || empty($couleur) || empty($region) || empty($type_bouteille) || empty($utilisateur_id)) {
             throw new InvalidArgumentException("Tous les champs doivent être remplis, sauf cave_id.");
         }
-        
+    
+        // Vérification que l'année est un entier positif
+        if (!is_numeric($annee) || $annee <= 0) {
+            throw new InvalidArgumentException("L'année doit être un nombre entier positif.");
+        }
+    
         // Assurez-vous que cave_id est toujours défini
         $cave_id = $utilisateur_id; // Utiliser utilisateur_id comme cave_id
-
+    
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("
@@ -36,6 +41,7 @@ class VinController {
             die('Erreur lors de la création du vin : ' . $e->getMessage());
         }
     }
+    
 
     // Lire un vin
     public function read($id) {
