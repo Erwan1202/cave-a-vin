@@ -83,15 +83,14 @@ switch ($action) {
         break;
 
     case 'maCave':
-        // Assurez-vous que l'utilisateur est connecté
+            // Assurez-vous que l'utilisateur est connecté
         if (!isset($_SESSION['utilisateur_id'])) {
             header('Location: index.php?action=connexion');
             exit();
         }
-        
-        $controller = new VinController(); // Modifiez pour utiliser VinController
-        // Récupérer les vins pour l'utilisateur connecté
-        $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
+            
+        $controller = new CaveController();
+        $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']); // Changez ici
         include 'views/gestionCave.php';
         break;
 

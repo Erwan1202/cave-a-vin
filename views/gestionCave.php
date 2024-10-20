@@ -28,7 +28,7 @@
 
         <!-- Table des vins -->
         <table class="w-full table-auto">
-            <thead>
+                <thead>
                 <tr>
                     <th class="px-4 py-2">Nom</th>
                     <th class="px-4 py-2">Année</th>

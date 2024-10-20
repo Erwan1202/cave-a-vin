@@ -35,10 +35,10 @@ class CaveController {
         $stmt->execute();
     }
 
-    public function getVinsByUtilisateur($utilisateur_id) {
+    public function getVinsByUtilisateur($utilisateurId) {
         $bdd = Bdd::connexion();
-        $stmt = $bdd->prepare("SELECT vin.* FROM vin JOIN cave ON vin.cave_id = cave.id WHERE cave.utilisateur_id = :utilisateur_id");
-        $stmt->bindParam(':utilisateur_id', $utilisateur_id);
+        $stmt = $bdd->prepare("SELECT * FROM vin WHERE utilisateur_id = :utilisateur_id");
+        $stmt->bindParam(':utilisateur_id', $utilisateurId);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
