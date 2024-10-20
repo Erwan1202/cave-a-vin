@@ -1,6 +1,6 @@
 <?php
-require_once 'models/Commentaire.php';
-require_once 'bdd.php';
+require_once 'models/commentaire.php';
+require_once 'models/bdd.php';
 
 class CommentaireController {
     public function create($texte, $utilisateur_id, $vin_id) {

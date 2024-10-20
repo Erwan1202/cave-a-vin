@@ -1,6 +1,6 @@
 <?php
 require_once 'models/vin.php';
-require_once 'bdd.php';
+require_once 'models/bdd.php';
 
 class VinController {
     public function create($nom, $annee, $couleur, $region, $type_bouteille, $utilisateur_id, $cave_id) {

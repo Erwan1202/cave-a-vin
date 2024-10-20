@@ -13,7 +13,7 @@ switch ($action) {
         $controller->create($_POST['nom'], $_POST['mdp']);
         break;
     case 'login':
-        // Ajoutez ici la logique de connexion
+
         break;
     case 'createVinForm':
         include 'views/vin_create_form.php';

@@ -1,8 +1,8 @@
 <?php
-require_once 'controllers/UtilisateurController.php';
+require_once 'controllers/UtilisateurContoller.php';
 require_once 'controllers/CaveController.php';
 require_once 'controllers/VinController.php';
-require_once 'controllers/CommentaireController.php';
+require_once 'controllers/CommentairesController.php';
 
 $action = $_GET['action'] ?? null;
 $id = $_GET['id'] ?? null;
@@ -58,19 +58,19 @@ switch ($action) {
         $controller->delete($id);
         break;
     case 'createCommentaire':
-        $controller = new CommentairesController();
+        $controller = new CommentaireController();
         $controller->create($_POST['texte'], $_POST['vin_id'], $_POST['utilisateur_id']);
         break;
     case 'readCommentaire':
-        $controller = new CommentairesController();
+        $controller = new CommentaireController();
         $data = $controller->read($id);
         break;
     case 'updateCommentaire':
-        $controller = new CommentairesController();
+        $controller = new CommentaireController();
         $controller->update($id, $_POST['texte'], $_POST['vin_id'], $_POST['utilisateur_id']);
         break;
     case 'deleteCommentaire':
-        $controller = new CommentairesController();
+        $controller = new CommentaireController();
         $controller->delete($id);
         break;
     default:

@@ -1,6 +1,6 @@
 <?php
-require_once 'models/Cave.php';
-require_once 'bdd.php';
+require_once 'models/cave.php';
+require_once 'models/bdd.php';
 
 class CaveController {
     public function create($nom, $utilisateur_id) {
