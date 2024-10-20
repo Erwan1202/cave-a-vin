@@ -53,8 +53,8 @@
             </div>
 
             <!-- Champs cachés pour utilisateur_id et cave_id -->
-            <input type="hidden" name="utilisateur_id" value="<?php echo isset($_SESSION['utilisateur_id']) ? $_SESSION['utilisateur_id'] : ''; ?>">
-            <input type="hidden" name="cave_id" value="<?php echo isset($cave_id) ? $cave_id : ''; ?>"> <!-- Assurez-vous que $cave_id est défini -->
+            <input type="hidden" name="utilisateur_id" value="<?php echo $_SESSION['utilisateur_id']; ?>">
+            <input type="hidden" name="cave_id" value="<?php echo $_SESSION['utilisateur_id']; ?>"> <!-- Définit cave_id à l'utilisateur_id -->
 
             <!-- Bouton de soumission -->
             <div class="flex justify-between items-center">
