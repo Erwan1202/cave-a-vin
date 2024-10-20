@@ -13,6 +13,7 @@ switch ($action) {
     case 'createUtilisateur':
         $controller = new UtilisateurController();
         $controller->create($_POST['nom'], $_POST['mdp']);
+        header('Location: index.php?action=connexion');
         break;
     case 'login':
         $controller = new UtilisateurController();
