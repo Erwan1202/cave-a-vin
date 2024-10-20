@@ -30,14 +30,12 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Si aucun vin n'est trouvé -->
                 <template x-if="vins.length === 0">
                     <tr>
                         <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
                     </tr>
                 </template>
 
-                <!-- Liste des vins avec filtre -->
                 <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
                     <tr>
                         <td class="border px-4 py-2" x-text="vin.nom"></td>
