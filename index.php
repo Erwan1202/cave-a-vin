@@ -68,7 +68,12 @@ switch ($action) {
         $controller->delete($id);
         header('Location: index.php?action=vinDetails&id=' . $_GET['vin_id']);
         break;
-    
+    case 'login':
+        $controller = new UtilisateurController();
+        $controller->login($_POST['nom'], $_POST['mdp']);
+        break;
+        
+
     case 'deconnexion':
         session_destroy(); // Détruisez la session
         header('Location: index.php?action=connexion');

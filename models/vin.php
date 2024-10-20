@@ -1,3 +1,5 @@
+<?php
+
 class Vin {
     private $id;
     private $nom;

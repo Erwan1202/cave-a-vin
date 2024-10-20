@@ -1,3 +1,4 @@
+<?php 
 class Cave {
     private $id;
     private $nom;

@@ -1,3 +1,5 @@
+<?php
+
 class Commentaire {
     private $id;
     private $texte;
