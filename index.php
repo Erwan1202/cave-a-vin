@@ -26,7 +26,7 @@ switch ($action) {
         $controller->create($_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_POST['utilisateur_id'], $_POST['cave_id']);
         header('Location: index.php?action=maCave');
         break;
-    case 'updateVinForm':
+    case 'updateVinFormid':
         $controller = new VinController();
         $data = $controller->read($id);
         include 'views/vin_update_form.php';
