@@ -8,12 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl" x-data="{ filter: '', vins: <?php echo json_encode($vins); ?> }">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl" x-data="{ filter: '', vins: <?php echo json_encode($vins, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?> }">
         <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
+
+        <!-- Filtre de recherche et bouton d'ajout -->
         <div class="mb-4 flex justify-between items-center">
             <input type="text" placeholder="Filtrer par nom..." x-model="filter" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
             <a href="index.php?action=createVinForm" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Ajouter un Vin</a>
         </div>
+
+        <!-- Table des vins -->
         <table class="w-full table-auto">
             <thead>
                 <tr>
@@ -26,6 +30,14 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Si aucun vin n'est trouvé -->
+                <template x-if="vins.length === 0">
+                    <tr>
+                        <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
+                    </tr>
+                </template>
+
+                <!-- Liste des vins avec filtre -->
                 <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
                     <tr>
                         <td class="border px-4 py-2" x-text="vin.nom"></td>
