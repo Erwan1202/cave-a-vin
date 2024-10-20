@@ -68,17 +68,7 @@ switch ($action) {
         $controller->delete($id);
         header('Location: index.php?action=vinDetails&id=' . $_GET['vin_id']);
         break;
-    case 'maCave':
-        if (!isset($_SESSION['utilisateur_id'])) {
-            header('Location: index.php?action=connexion');
-            exit();
-        }
-        $controller = new CaveController();
-        $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
-        $commentaireController = new CommentaireController();
-        $commentaires = $commentaireController->getCommentairesByUtilisateur($_SESSION['utilisateur_id']);
-        include 'views/ma_cave.php';
-        break;
+    
     case 'deconnexion':
         session_destroy(); // Détruisez la session
         header('Location: index.php?action=connexion');
