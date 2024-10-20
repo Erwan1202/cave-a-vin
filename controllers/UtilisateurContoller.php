@@ -44,24 +44,13 @@ class UtilisateurController {
     }
 
     public function login($nom, $mdp) {
-        // Éviter les erreurs de sortie
-        ob_start();
-        
-        // Logique de connexion ici
-        // Assurez-vous que votre connexion à la base de données et vos requêtes ne génèrent pas d'erreurs
-        
-        if ($nom) { // Si l'utilisateur est trouvé
-            // Initialiser la session ou rediriger
+        $utilisateur = $this->readByNom($nom);
+        if ($utilisateur['mdp'] == $mdp) {
+            $_SESSION['utilisateur_id'] = $utilisateur['id'];
             header('Location: index.php?action=maCave');
-            exit();
         } else {
-            // Redirection en cas d'échec
-            header('Location: index.php?action=connexion&error=1');
-            exit();
+            header('Location: index.php?action=connexion');
         }
-        
-        // Terminer le tampon de sortie
-        ob_end_clean();
     }
     
 }
