@@ -87,11 +87,12 @@ switch ($action) {
             header('Location: index.php?action=connexion');
             exit();
         }
-
+        
         $controller = new CaveController();
-        $data = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
+        $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']); // Changez ici
         include 'views/gestionCave.php';
         break;
+        
 
     case 'createCave':
         $controller = new CaveController();

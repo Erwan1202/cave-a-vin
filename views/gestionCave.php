@@ -10,7 +10,7 @@
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl" x-data="{ filter: '', vins: <?php echo json_encode($vins, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?> }">
         <h1 class="text-2xl font-bold mb-6 text-center">Ma Cave</h1>
-
+        
         <!-- Filtre de recherche et bouton d'ajout -->
         <div class="mb-4 flex justify-between items-center">
             <input type="text" placeholder="Filtrer par nom..." x-model="filter" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
