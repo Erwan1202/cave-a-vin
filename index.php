@@ -99,6 +99,8 @@ switch ($action) {
         $controller->delete($id);
         header('Location: index.php?action=maCave');
         break;
+     
+        
     case 'inscription':
         include 'views/inscription.php';
         break;
