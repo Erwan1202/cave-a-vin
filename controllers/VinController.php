@@ -111,7 +111,6 @@ class VinController {
         $stmt->execute();
         $vins = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        var_dump($vins);
             
         return $vins;
 
