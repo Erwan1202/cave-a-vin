@@ -77,7 +77,7 @@ switch ($action) {
     case 'maCave':
         $controller = new CaveController();
         $data = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
-        include 'views/cave.php';
+        include 'views/gestionCave.php';
         break;
     case 'createCave':
         $controller = new CaveController();
