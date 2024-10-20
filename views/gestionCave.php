@@ -17,24 +17,6 @@
             <a href="index.php?action=createVinForm" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Ajouter un Vin</a>
         </div>
 
-        <!-- Affichage des vins -->
-        <?php if (!empty($vins)): ?>
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">Mes Vins</h2>
-            <ul class="list-disc pl-5 mb-4">
-                <?php foreach ($vins as $vin): ?>
-                    <li class="border-b py-2">
-                        <span class="font-semibold"><?= htmlspecialchars($vin['nom']) ?></span> - 
-                        Année: <span class="italic"><?= htmlspecialchars($vin['annee']) ?></span>, 
-                        Couleur: <span class="italic"><?= htmlspecialchars($vin['couleur']) ?></span>, 
-                        Région: <span class="italic"><?= htmlspecialchars($vin['region']) ?></span>, 
-                        Type de bouteille: <span class="italic"><?= htmlspecialchars($vin['type_bouteille']) ?></span>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p class="text-red-500">Aucun vin trouvé dans votre cave.</p>
-        <?php endif; ?>
-
         <!-- Table des vins -->
         <table class="w-full table-auto mt-4 border border-gray-300 rounded-lg overflow-hidden">
             <thead>
@@ -48,25 +30,26 @@
                 </tr>
             </thead>
             <tbody>
-                <template x-if="vins.length === 0">
+                <!-- Affichage des vins -->
+                <?php if (!empty($vins)): ?>
+                    <?php foreach ($vins as $vin): ?>
+                        <tr class="hover:bg-gray-100 transition duration-200">
+                            <td class="border px-4 py-2"><?= htmlspecialchars($vin['nom']) ?></td>
+                            <td class="border px-4 py-2"><?= htmlspecialchars($vin['annee']) ?></td>
+                            <td class="border px-4 py-2"><?= htmlspecialchars($vin['couleur']) ?></td>
+                            <td class="border px-4 py-2"><?= htmlspecialchars($vin['region']) ?></td>
+                            <td class="border px-4 py-2"><?= htmlspecialchars($vin['type_bouteille']) ?></td>
+                            <td class="border px-4 py-2">
+                                <a href="index.php?action=updateVinForm&id=<?= $vin['id'] ?>" class="text-blue-500 hover:underline">Modifier</a>
+                                <a href="index.php?action=deleteVin&id=<?= $vin['id'] ?>" class="text-red-500 hover:underline ml-2">Supprimer</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
+                        <td colspan="6" class="text-center py-4 text-red-500">Aucun vin trouvé dans votre cave.</td>
                     </tr>
-                </template>
-
-                <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
-                    <tr class="hover:bg-gray-100 transition duration-200">
-                        <td class="border px-4 py-2" x-text="vin.nom"></td>
-                        <td class="border px-4 py-2" x-text="vin.annee"></td>
-                        <td class="border px-4 py-2" x-text="vin.couleur"></td>
-                        <td class="border px-4 py-2" x-text="vin.region"></td>
-                        <td class="border px-4 py-2" x-text="vin.type_bouteille"></td>
-                        <td class="border px-4 py-2">
-                            <a :href="'index.php?action=updateVinForm&id=' + vin.id" class="text-blue-500 hover:underline">Modifier</a>
-                            <a :href="'index.php?action=deleteVin&id=' + vin.id" class="text-red-500 hover:underline ml-2">Supprimer</a>
-                        </td>
-                    </tr>
-                </template>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
