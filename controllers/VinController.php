@@ -105,20 +105,18 @@ class VinController {
     }
 
         // Ajoutez cette méthode dans votre VinController.php
-    public function getVinsByUtilisateur($utilisateur_id) {
-        if (empty($utilisateur_id)) {
-            throw new InvalidArgumentException("L'identifiant de l'utilisateur ne peut pas être vide.");
-        }
+    public function getVinsByUtilisateur($utilisateurId) {
+        $bdd = Bdd::connexion();
+        $stmt = $bdd->prepare("SELECT * FROM vin WHERE utilisateur_id = :utilisateur_id");
+        $stmt->bindParam(':utilisateur_id', $utilisateurId);
+        $stmt->execute();
+        $vins = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        // Debug : Affiche les vins récupérés
+        var_dump($vins);
+            
+        return $vins;
 
-        try {
-            $bdd = $this->getBddConnection();
-            $stmt = $bdd->prepare("SELECT * FROM vin WHERE utilisateur_id = :utilisateur_id");
-            $stmt->bindParam(':utilisateur_id', $utilisateur_id);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            die('Erreur lors de la récupération des vins : ' . $e->getMessage());
-        }
-}
+    }
 }
 ?>

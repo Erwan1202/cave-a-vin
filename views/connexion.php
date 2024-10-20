@@ -11,14 +11,6 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md" x-data="{ nom: '', mdp: '' }">
         <h1 class="text-2xl font-bold mb-6 text-center">Connexion</h1>
 
-        <!-- Affichage de l'utilisateur connecté -->
-        <div class="mb-4 text-center">
-            <?php if (isset($_SESSION['utilisateur_nom'])): ?>
-                <p class="text-lg">Bienvenue, <strong><?php echo htmlspecialchars($_SESSION['utilisateur_nom']); ?></strong>!</p>
-            <?php else: ?>
-                <p class="text-lg">Vous n'êtes pas connecté.</p>
-            <?php endif; ?>
-        </div>
 
         <form action="index.php?action=login" method="post" @submit.prevent="if(nom && mdp) $el.submit()">
             <div class="mb-4">

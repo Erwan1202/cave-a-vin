@@ -26,40 +26,39 @@
             <a href="index.php?action=createVinForm" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Ajouter un Vin</a>
         </div>
 
-        <!-- Table des vins -->
         <table class="w-full table-auto">
-                <thead>
-                <tr>
-                    <th class="px-4 py-2">Nom</th>
-                    <th class="px-4 py-2">Année</th>
-                    <th class="px-4 py-2">Couleur</th>
-                    <th class="px-4 py-2">Région</th>
-                    <th class="px-4 py-2">Type de Bouteille</th>
-                    <th class="px-4 py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <template x-if="vins.length === 0">
-                    <tr>
-                        <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
-                    </tr>
-                </template>
+    <thead>
+        <tr>
+            <th class="px-4 py-2">Nom</th>
+            <th class="px-4 py-2">Année</th>
+            <th class="px-4 py-2">Couleur</th>
+            <th class="px-4 py-2">Région</th>
+            <th class="px-4 py-2">Type de Bouteille</th>
+            <th class="px-4 py-2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <template x-if="vins.length === 0">
+            <tr>
+                <td colspan="6" class="text-center py-4">Aucun vin trouvé.</td>
+            </tr>
+        </template>
 
-                <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
-                    <tr>
-                        <td class="border px-4 py-2" x-text="vin.nom"></td>
-                        <td class="border px-4 py-2" x-text="vin.annee"></td>
-                        <td class="border px-4 py-2" x-text="vin.couleur"></td>
-                        <td class="border px-4 py-2" x-text="vin.region"></td>
-                        <td class="border px-4 py-2" x-text="vin.type_bouteille"></td>
-                        <td class="border px-4 py-2">
-                            <a :href="'index.php?action=updateVinForm&id=' + vin.id" class="text-blue-500 hover:underline">Modifier</a>
-                            <a :href="'index.php?action=deleteVin&id=' + vin.id" class="text-red-500 hover:underline ml-2">Supprimer</a>
-                        </td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
+        <template x-for="vin in vins.filter(v => v.nom.toLowerCase().includes(filter.toLowerCase()))" :key="vin.id">
+            <tr>
+                <td class="border px-4 py-2" x-text="vin.nom"></td>
+                <td class="border px-4 py-2" x-text="vin.annee"></td>
+                <td class="border px-4 py-2" x-text="vin.couleur"></td>
+                <td class="border px-4 py-2" x-text="vin.region"></td>
+                <td class="border px-4 py-2" x-text="vin.type_bouteille"></td>
+                <td class="border px-4 py-2">
+                    <a :href="'index.php?action=updateVinForm&id=' + vin.id" class="text-blue-500 hover:underline">Modifier</a>
+                    <a :href="'index.php?action=deleteVin&id=' + vin.id" class="text-red-500 hover:underline ml-2">Supprimer</a>
+                </td>
+            </tr>
+        </template>
+    </tbody>
+</table>
     </div>
 </body>
 </html>
