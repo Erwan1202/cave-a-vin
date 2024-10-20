@@ -3,6 +3,7 @@ require_once 'models/cave.php';
 require_once 'models/bdd.php';
 
 class CaveController {
+    // Crée une cave
     public function create($nom, $utilisateur_id) {
         $bdd = Bdd::connexion();
         $stmt = $bdd->prepare("INSERT INTO cave (nom, utilisateur_id) VALUES (:nom, :utilisateur_id)");
@@ -11,6 +12,7 @@ class CaveController {
         $stmt->execute();
     }
 
+    // Lit une cave par son ID
     public function read($id) {
         $bdd = Bdd::connexion();
         $stmt = $bdd->prepare("SELECT * FROM cave WHERE id = :id");
@@ -19,6 +21,7 @@ class CaveController {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Met à jour une cave
     public function update($id, $nom, $utilisateur_id) {
         $bdd = Bdd::connexion();
         $stmt = $bdd->prepare("UPDATE cave SET nom = :nom, utilisateur_id = :utilisateur_id WHERE id = :id");
@@ -28,6 +31,7 @@ class CaveController {
         $stmt->execute();
     }
 
+    // Supprime une cave
     public function delete($id) {
         $bdd = Bdd::connexion();
         $stmt = $bdd->prepare("DELETE FROM cave WHERE id = :id");
@@ -35,14 +39,30 @@ class CaveController {
         $stmt->execute();
     }
 
-    public function getVinsByUtilisateur($utilisateurId) {
-        $bdd = Bdd::connexion();
-        $stmt = $bdd->prepare("SELECT * FROM vin WHERE utilisateur_id = :utilisateur_id");
-        $stmt->bindParam(':utilisateur_id', $utilisateurId);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Récupère les vins par utilisateur
+    public function getVinsByUtilisateur($utilisateur_id) {
+        $bdd = Bdd::connexion(); // Connexion à la base de données
+        $stmt = $bdd->prepare("SELECT * FROM vins WHERE utilisateur_id = :utilisateur_id");
+        $stmt->execute(['utilisateur_id' => $utilisateur_id]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return []; // Retourne un tableau vide si aucun vin n'est trouvé
+        }
+        return $results;
     }
 
-    
+    // Récupère les vins par cave
+    public function getVinsByCave($cave_id) {
+        $bdd = Bdd::connexion(); // Connexion à la base de données
+        $stmt = $bdd->prepare("SELECT * FROM vins WHERE cave_id = :cave_id");
+        $stmt->execute(['cave_id' => $cave_id]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$results) {
+            return []; // Retourne un tableau vide si aucun vin n'est trouvé
+        }
+        return $results;
+    }
 }
 ?>
