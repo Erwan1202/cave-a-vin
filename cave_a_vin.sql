@@ -1,5 +1,6 @@
-create DATABASE bd ;
-use bd;
+-- Active: 1729325451277@@127.0.0.1@3306
+create DATABASE cave_a_vin ;
+use cave_a_vin;
 
 create table utilisateur(
     id int primary key auto_increment,

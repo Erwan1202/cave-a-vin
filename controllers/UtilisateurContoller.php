@@ -34,5 +34,13 @@ class UtilisateurController {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
+
+    public function readByNom($nom) {
+        $bdd = Bdd::connexion();
+        $stmt = $bdd->prepare("SELECT * FROM utilisateur WHERE nom = :nom");
+        $stmt->bindParam(':nom', $nom);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
