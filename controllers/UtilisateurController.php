@@ -45,13 +45,13 @@ class UtilisateurController {
 
     public function login($nom, $mdp) {
         $utilisateur = $this->readByNom($nom);
-        if ($utilisateur['mdp'] == $mdp) {
+        if ($utilisateur && $utilisateur['mdp'] == $mdp) {
             $_SESSION['utilisateur_id'] = $utilisateur['id'];
+            $_SESSION['utilisateur_nom'] = $utilisateur['nom']; // Ajout de la variable de session pour le nom
             header('Location: index.php?action=maCave');
         } else {
             header('Location: index.php?action=connexion');
         }
     }
-    
 }
 ?>
