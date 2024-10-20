@@ -68,11 +68,40 @@ switch ($action) {
         $controller->delete($id);
         header('Location: index.php?action=vinDetails&id=' . $_GET['vin_id']);
         break;
+
     case 'login':
         $controller = new UtilisateurController();
         $controller->login($_POST['nom'], $_POST['mdp']);
         break;
-        
+
+    case 'maCave':
+        $controller = new CaveController();
+        $data = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']);
+        include 'views/ma_cave.php';
+        break;
+    case 'createCave':
+        $controller = new CaveController();
+        $controller->create($_POST['nom'], $_SESSION['utilisateur_id']);
+        header('Location: index.php?action=maCave');
+        break;
+    case 'updateCaveForm':
+        $controller = new CaveController();
+        $data = $controller->read($id);
+        include 'views/cave_update_form.php';
+        break;
+    case 'updateCave':
+        $controller = new CaveController();
+        $controller->update($id, $_POST['nom'], $_SESSION['utilisateur_id']);
+        header('Location: index.php?action=maCave');
+        break;
+    case 'deleteCave':
+        $controller = new CaveController();
+        $controller->delete($id);
+        header('Location: index.php?action=maCave');
+        break;
+    case 'inscription':
+        include 'views/inscription.php';
+        break;
 
     case 'deconnexion':
         session_destroy(); // Détruisez la session
