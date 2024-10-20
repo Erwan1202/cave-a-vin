@@ -26,7 +26,7 @@ class VinController {
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("
-                INSERT INTO vin (nom, annee, couleur, region, type_bouteille, utilisateur_id, cave_id)
+                INSERT INTO vins (nom, annee, couleur, region, type_bouteille, utilisateur_id, cave_id)
                 VALUES (:nom, :annee, :couleur, :region, :type_bouteille, :utilisateur_id, :cave_id)
             ");
             $stmt->bindParam(':nom', $nom);
@@ -51,7 +51,7 @@ class VinController {
 
         try {
             $bdd = $this->getBddConnection();
-            $stmt = $bdd->prepare("SELECT * FROM vin WHERE id = :id");
+            $stmt = $bdd->prepare("SELECT * FROM vins WHERE id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -69,7 +69,7 @@ class VinController {
         try {
             $bdd = $this->getBddConnection();
             $stmt = $bdd->prepare("
-                UPDATE vin
+                UPDATE vins
                 SET nom = :nom, annee = :annee, couleur = :couleur, region = :region, type_bouteille = :type_bouteille,
                     utilisateur_id = :utilisateur_id, cave_id = :cave_id
                 WHERE id = :id
@@ -96,7 +96,7 @@ class VinController {
 
         try {
             $bdd = $this->getBddConnection();
-            $stmt = $bdd->prepare("DELETE FROM vin WHERE id = :id");
+            $stmt = $bdd->prepare("DELETE FROM vins WHERE id = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
         } catch (PDOException $e) {
@@ -106,7 +106,7 @@ class VinController {
 
     public function getVinsByUtilisateur($utilisateurId) {
         $bdd = Bdd::connexion();
-        $stmt = $bdd->prepare("SELECT * FROM vin WHERE utilisateur_id = :utilisateur_id");
+        $stmt = $bdd->prepare("SELECT * FROM vins WHERE utilisateur_id = :utilisateur_id");
         $stmt->bindParam(':utilisateur_id', $utilisateurId);
         $stmt->execute();
         $vins = $stmt->fetchAll(PDO::FETCH_ASSOC);
