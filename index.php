@@ -28,7 +28,15 @@ switch ($action) {
     case 'createVin':
         $controller = new VinController();
         // Assurez-vous d'utiliser l'ID de l'utilisateur à partir de la session
-        $controller->create($_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_SESSION['utilisateur_id'], $_POST['cave_id']);
+        $controller->create(
+            $_POST['nom'], 
+            $_POST['annee'], 
+            $_POST['couleur'], 
+            $_POST['region'], 
+            $_POST['type_bouteille'], 
+            $_SESSION['utilisateur_id'], 
+            $_POST['cave_id']
+        );
         header('Location: index.php?action=maCave');
         break;
 
@@ -40,7 +48,16 @@ switch ($action) {
 
     case 'updateVin':
         $controller = new VinController();
-        $controller->update($id, $_POST['nom'], $_POST['annee'], $_POST['couleur'], $_POST['region'], $_POST['type_bouteille'], $_SESSION['utilisateur_id'], $_POST['cave_id']);
+        $controller->update(
+            $id, 
+            $_POST['nom'], 
+            $_POST['annee'], 
+            $_POST['couleur'], 
+            $_POST['region'], 
+            $_POST['type_bouteille'], 
+            $_SESSION['utilisateur_id'], 
+            $_POST['cave_id']
+        );
         header('Location: index.php?action=maCave');
         break;
 
@@ -83,12 +100,12 @@ switch ($action) {
         break;
 
     case 'maCave':
-            // Assurez-vous que l'utilisateur est connecté
+        // Assurez-vous que l'utilisateur est connecté
         if (!isset($_SESSION['utilisateur_id'])) {
             header('Location: index.php?action=connexion');
             exit();
         }
-            
+
         $controller = new CaveController();
         $vins = $controller->getVinsByUtilisateur($_SESSION['utilisateur_id']); // Changez ici
         include 'views/gestionCave.php';
