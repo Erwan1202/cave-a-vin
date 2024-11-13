@@ -10,7 +10,6 @@ class Cave {
         $this->utilisateur_id = $utilisateur_id;
     }
 
-    // Getters and setters
     public function getId() {
         return $this->id;
     }
